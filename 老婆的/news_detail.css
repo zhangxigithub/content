@@ -1,0 +1,49 @@
+*{word-wrap:break-word;margin:0;padding:0}
+a,h1,h2,h3{text-decoration:none;}
+
+body{
+    font-size:16px;
+    margin:0;
+    padding:0;
+    background-color:rgb(255,255,255);
+}
+.clearfix:after {
+	clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.main_wrap {margin: 0 20px;}
+
+.result_main h2,.result_main h3{border-left:4px solid #bf0000;line-height: 100%;}
+.result_main h2{font-weight:300;padding:13px 0 11px 10px;font-size:20px;color:#101111;}
+.result_main h3{font-weight:150;padding:0 0 11px 12px;color:#6e6e6e;color:#868686;font-size:14px;position:relative;}
+.hot{padding: 1px 4px 2px;border:2px solid #bf0000;color:#bf0000;position:absolute;right:0px;top:-3px;margin-right:9px;font-size:14px;font-weight:bold;}
+.result_content{font-size:15px;}
+.result_content p{line-height:140%;text-indent:23px;color:#333333;margin:14px 0;}
+.result_content{margin:0px 0px 0px 0px;}
+.result_content_title{border-bottom:1px solid #bdbdbd;overflow:hidden;margin:2px 10px 0 5px}
+.result_content img{ width:100%; padding:0px 12px 12px 12px;box-sizing:border-box;}
+.result_content a{color:#ff5757;margin-top:10px;font-size:18px;}
+.result_content a.hover{color:#860000;}
+
+
+
+.bottom .ad {
+	margin-bottom: 20px;
+}
+.bottom .bottom_ad_img{ width:100%;}
+
+
+.recommand  .rec_head{position:relative;border-top:2px solid #860000;padding-top:30px;}
+			.rec_head .rec_title_bg{position:absolute;left:0;top:0;width:200px;height:4px;background-color:#860000;}
+			.rec_head .rec_title{height:28px;line-height:28px;font-size:26px;color:#860000;background:url(rec_rel.png) no-repeat;padding-left:60px;}
+			.rec_head .rec_more{float:right;width:107px;height:38px;background:url(rec_more.png);margin-top:-5px;}
+			.rec_head .rec_more span{font-size:18px;color:#860000;display:inline-block;margin:8px 0 0 10px;}
+			.rec_list li{border-bottom:1px dashed #D6D6D6;padding:20px 0;list-style:none;}
+			.rec_list li img{float:left;width:127px;height:85px;margin-right:20px;}
+			.rec_list li div{float:left;width:100%;}
+			.rec_list li p.title{font-size:24px;height:44px;line-height:44px;white-space:nowrap;text-overflow:"...";overflow:hidden;}
+			.rec_list li p.from{font-size:20px;color:#ABABAB;height:44px;line-height:44px;}
+			.rec_list li p.grey{color:#989898;}
