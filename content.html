@@ -1,0 +1,232 @@
+<html>
+    
+        <head>
+            <meta id="viewport" name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <script type='text/javascript' src="jquery.js"></script>
+            <style type="text/css">
+                *{word-wrap:break-word;margin:0;padding:0}
+                a,h1,h2,h3{text-decoration:none;}
+                
+                body{
+                    font-size:16px;
+                    margin:0;
+                    padding:0;
+                    background-color:rgb(255,255,255);
+                }
+
+                .result_main h2,.result_main h3{border-left:4px solid #bf0000;line-height: 100%;}
+                .result_main h2{font-weight:300;padding:13px 0 11px 10px;font-size:20px;color:#101111;}
+                .result_main h3{font-weight:150;padding:0 0 11px 12px;color:#6e6e6e;color:#868686;font-size:14px;position:relative;}
+                .hot{padding: 1px 4px 2px;border:2px solid #bf0000;color:#bf0000;position:absolute;right:0px;top:-3px;margin-right:9px;font-size:14px;font-weight:bold;}
+                .result_content{font-size:15px;}
+                .result_content p{line-height:140%;text-indent:23px;color:#333333;margin:14px 12px;}
+                .result_content{margin:0px 0px 0px 0px;}
+                .result_content_title{border-bottom:1px solid #bdbdbd;overflow:hidden;margin:2px 10px 0 5px}
+                .result_content img{ width:100%; padding:0px 12px 12px 12px;box-sizing:border-box;}
+                .result_content a{color:#ff5757;margin-top:10px;font-size:18px;}
+                .result_content a.hover{color:#860000;}
+                
+                
+                
+                .bottom {}
+                .bottom .ad{}
+                .bottom_ad_img{ width:100%; padding:0px 12px 12px 12px;box-sizing:border-box;}
+                
+                .recommand{
+                    margin-left: 12px;
+                    margin-right: 12px;
+                    height:100px;
+                }
+               .recommand .title_bg{
+                    height:10px;
+                    background-image:url(recommand_line.png);
+                    background-repeat: no-repeat;
+               }
+                .recommand .title{
+               }
+                .recommand .title .more{
+                    float: right;
+               }
+                </style>
+            
+            <script type="text/javascript">
+
+                var nid = "http://stock.sohu.com/20140730/n402909647.shtml";
+                var newsList; //保存相关新闻
+                var newsIndex = 0; //保存相关新闻读取位置
+                var devid = "dddddddd";
+
+
+                function zxrandom(min,max)
+                {
+                    return parseInt(min + (max-min)*Math.random());
+                }
+
+                function zxmin(num1,num2)
+                {
+                    return eval(num1) < eval(num2) ? num1 : num2;
+                }
+                 
+                function setFontSize(size)
+                {
+                     document.getElementById("result_content").style.fontSize = size+"px";
+                }
+
+                 function addBottomHeight(bottomHeight)
+                 {
+                     var height = document.body.scrollHeight;
+                     document.body.style.height= height + bottomHeight;
+                 }
+
+
+
+                //添加相关新闻
+                function addRecommandNews(list)
+                {
+                    for(var i =0;i<list.length;i++)
+                    {
+                        var news = list[i];
+
+                        if(news["picture"])
+                        {
+                            //add右图的cell样式
+                            console.log(news["title"]+news["picture"]+news["mname"]);
+                        }else
+                        {
+                            //没图
+                            console.log("没图"+news["title"]+news["picture"]+news["mname"]);
+                        }
+                    }
+                }
+
+
+                //获取相关新闻
+                function getRecommandNews(nid)
+                 {
+                     $.ajax({
+                            url: 'http://mobapp.chinaso.com/1/category/recmdNews',
+                            data: {'nid':nid},
+                            success: function(json)
+                            {
+                                // alert(json["newsList"][1]["title"]);
+                                newsList = json["newsList"];
+                                //alert(newsList);
+                                var theList = new Array();
+
+                                for(var i =0;i<zxmin(5,newsList.length);i++)
+                                {
+                                    theList.push(newsList[i]);
+                                    newsIndex ++;
+                                }
+                                addRecommandNews(theList);
+                            },
+                            dataType: 'json'
+                            });
+                }
+
+
+
+                //换一批相关新闻
+                function changeRecommandNews()
+                {
+                    var theList = new Array();
+                    for(var i =0;i<zxmin(5,newsList.length);i++)
+                    {
+                        var index = (newsIndex++) % newsList.length;
+                        var news = newsList[index];
+                        theList.push(news);
+                    }
+                    addRecommandNews(theList);
+                }
+
+                //顶踩
+                function evaluate(devid,nid,value)
+                {
+                    $.ajax({
+
+                        url: 'http://mobapp.chinaso.com/1/news/upOrDown',
+                        data: {'nid':nid,"devid":devid,"value":value},
+                        success: function(json)
+                        {w
+                            console.log(json);
+                        },
+                        dataType: 'json'
+                    });
+                }
+
+
+                 getRecommandNews(nid);
+                 evaluate(devid,nid,1);
+             </script>
+            
+        </head>
+
+
+<body>
+<div class="result_main">
+<div class="result_content" id="result_content">
+
+
+<p id='result_content_p'>
+昨天，中纪委常委、监察部副部长黄晓薇做客网站在线访谈时透露，全国纪检监察机关在去年查办案件数量大幅增长的基础上，今年上半年，给予党纪政纪处分的人数比去年同期增长了31.5%。
+</p>
+<p id='result_content_p'>
+今年以来，中纪委已通报9起纪检监察干部违反中央八项规定精神的案件，其中6月就通报了5起。
+</p>
+<!--
+<p id='result_content_p'>
+黄晓薇说，现在全国有50多万专职纪检监察干部，“要打造一支过硬队伍，非朝夕而就，需要久久为功”。
+</p>
+<p id='result_content_p'>
+自身建设
+</p>
+<p id='result_content_p'>
+纪检监察机关不是天然的“避风港”“保险箱”，纪检监察干部也不具备天生的“免疫力”。
+</p>
+<p id='result_content_p'>
+对心存侥幸、以身试法的“害群之马”，我们绝不姑息，绝不允许他们透支纪检监察机关的信用。
+</p>
+<p id='result_content_p'>
+纪检官员出问题因监督乏力
+</p>
+<p id='result_content_p'>
+今年1月，习近平总书记在中央纪委三次全会上指出，各级纪委要解决好“灯下黑”问题。
+</p>
+<p id='result_content_p'>
+黄晓薇说，纪检监察系统也发生过一些发人深省的案例，比如曾经担任过省纪委书记的王华元、李崇禧、金道铭等。
+</p>
+<p id='result_content_p'>
+“这些干部出问题，原因固然是多方面的，但其中很重要的一条就是主观上拒绝接受监督、客观上监督乏力，使得权力运行偏离了正确方向。”黄晓薇说，解决“灯下黑”，必须直面“由谁来监督纪委”的问题，“纪检监察机关不是天然的‘避风港’‘保险箱’，纪检监察干部也不具备天生的免疫力”。
+</p>
+<p id='result_content_p'>
+为加强干部队伍自身建设，黄晓薇介绍，一年多来，纪检监察部门在严明纪律、强化监督管理和加强组织创新等方面，打了一系列“组合拳”，给机关干部上了“铁夹板”、紧了“螺丝扣”。”
+</p>
+-->
+</div>
+</div>
+
+
+
+<div class="bottom">
+    <div class="ad">
+        <img class="bottom_ad_img" src="http://c.hiphotos.baidu.com/image/pic/item/0df431adcbef76096941fc812cdda3cc7cd99e61.jpg" />
+    </div>
+    
+
+    <div class="recommand">
+        <div class="title_bg"></div>
+        <div class="title">
+            <span>相关推荐</span>
+            <span class="more"><a href="javascript:changeRecommandNews()">换一批</a></span>
+        </div>
+
+    </div>
+    
+    
+</div>
+
+
+
+</body>
+</html>
